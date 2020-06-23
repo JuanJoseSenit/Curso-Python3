@@ -1,0 +1,8 @@
+Hola gente
+Me llamo Juanjo y estoy probando cosillas con los archivos externos
+Lo siguiente es un json
+{
+    nombre:"Juanjo",
+    apellido:"Senit,
+    "comida preferida":"Patatas fritas"
+}

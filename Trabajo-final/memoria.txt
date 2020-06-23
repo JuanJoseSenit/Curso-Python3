@@ -1,0 +1,104 @@
+NOMBRE: JUAN JOSÉ
+APELLIDOS: SENIT VELASCO
+MODALIDAD: Propuesta 2: "Hackeando, a lo bruto, a lo Julio César"
+No han sido usadas bibliotecas "extra"
+NOTAS: El trabajo dispone de dos ficheros .py (TrabajoFinal.py e index.py)
+    index.py: El que hay que ejecutar. Contiene las llamadas a las funciones necesarias
+    TrabajoFinal.py: Contiene las funciones (lógica del programa)
+-->He realizado también el ejercicio "A la carta más alta". Es por si le puedo enviar a parte (ya no dentro de la evaluación)
+para que pueda ser corregido <--
+
+
+A la hora de resolver este ejercicio se empezó por resolverlo de forma lineal (es decir, sin el uso de funciones y de ficheros externos)
+porque se quería primero comprobar el funcionamiento del mismo (a parte de que me es más fácil programar así).
+
+A continuación se muestra este código inicial:
+
+""" #--------------------DICCIONARIO EN MAYUSCULAS Y SIN TILDES---------------------------
+archivoDiccionario=open("./Diccionario.txt","r",encoding='ISO-8859-1')
+diccionario=archivoDiccionario.readlines()
+archivoDiccionario.close()
+
+matrizPalabrasUtiles=[]
+for i in range(len(diccionario)):
+    palabra=diccionario[i].upper()
+    palabra=palabra.replace("Á","A")
+    palabra=palabra.replace("É","E")
+    palabra=palabra.replace("Í","I")
+    palabra=palabra.replace("Ó","O")
+    palabra=palabra.replace("Ú","U")
+
+    matrizPalabrasUtiles.append(palabra)
+#print(matrizPalabrasUtiles[2])
+
+#-------------------------------------------------------------------------------------
+archivoEncriptado=open("./fichero_cifrado.txt","r")
+
+lecturaArchivoEncriptado=archivoEncriptado.read()
+
+archivoEncriptado.close()
+
+lecturaArchivoEncriptado=lecturaArchivoEncriptado.upper()
+
+lecturaArchivoEncriptado=lecturaArchivoEncriptado.replace(" ", "")
+
+matrizConvertidaNumero=[]
+for i in range(len(lecturaArchivoEncriptado)):
+    matrizConvertidaNumero.append(ord(lecturaArchivoEncriptado[i])-65)
+    
+matrizFinalCadenas=[]
+resultadoCadena=""
+contador=0
+aux=0
+
+archivoEscritura=open("./fichero_plano.txt","w")
+for i in range(26):
+    
+    for j in range(len(matrizConvertidaNumero)):
+        numero=(matrizConvertidaNumero[j]+i)%26
+        letra=chr(numero+65)
+        resultadoCadena=resultadoCadena+letra
+    for n in range(len(matrizPalabrasUtiles)):
+      
+        matrizPalabrasUtiles[n]=matrizPalabrasUtiles[n].replace("\n", "")
+        '''if i == 13:
+            if resultadoCadena.count(matrizPalabrasUtiles[n])>0:
+
+                print(matrizPalabrasUtiles[n], resultadoCadena.count(matrizPalabrasUtiles[n]))'''
+        contador=contador+resultadoCadena.count(matrizPalabrasUtiles[n])
+        
+            
+    matrizFinalCadenas.append(resultadoCadena)
+    if contador > aux:
+        aux = contador
+        clave=i
+
+    numeracion= str(i)+ " "
+    archivoEscritura.write(numeracion)
+    archivoEscritura.write(resultadoCadena)
+    archivoEscritura.write("\n")
+    print(i,"   ",resultadoCadena,"contador",contador-len(resultadoCadena))
+    
+    contador=0
+    resultadoCadena=""
+archivoEscritura.write("La clave correcta es la: ")
+archivoEscritura.write(str(clave))
+archivoEscritura.write("\nQue se corresponde a: \n")
+archivoEscritura.write(matrizFinalCadenas[clave])
+print("La clave más probable es :", clave)
+archivoEscritura.close() """
+
+"""
+
+Una vez llegado a este punto, lo siguiente era ordenar el código e intentar depurar en la medida de lo posible (la verdad es que
+nunca he visto nada de depuración). Para ello se buscaron las posibles funciones que, con unas simples lineas de código, fuesen llamadas
+y resolviesen el problema propuesto. Las funciones empleadas se muestran a continuación: 
+    transformarDiccionario()
+    lecturaTextoEncriptado()
+    convertirNumero()
+    escribirArchivo() 
+    escrituraClaveTextoCorrecto()
+Se incorporaron comprobaciones que no estaban en código inicial para la mejora del programa
+Para concluir, las funciones (TrabajoFinal.py) se separaron de las llamadas a las mismas (index.py)
+
+NOTA: La explicación del código se encuentra en el mismo
